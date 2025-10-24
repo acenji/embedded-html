@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>ACENji Local Test</title>
+ 
+  
+  <link rel="stylesheet" href="https://acenji.com/build_web_app/static/css/main.b6215c01.css">
+</head>
+<body>
+  <!-- Root element for your app -->
+  <div id="acenji_root"></div>
+
+  <!-- External app bundle(s) -->
+  <script src="https://acenji.com/build_web_app/static/js/main.js"></script>
+
+  <!-- Boot script -->
+  <script>
+    window.addEventListener('load', () => {
+      // Set the app id for your test
+      const appId = 643;
+      localStorage.setItem('web_app_id', appId);
+
+      const rootElement = document.getElementById('acenji_root');
+
+      // Expect these to be exposed by the external bundle
+      const { React, ReactDOM, Provider, configureStore, default: App } = window.AppLibrary;
+
+      const store = configureStore();
+      const root = ReactDOM.createRoot(rootElement);
+      root.render(
+        React.createElement(
+          React.StrictMode,
+          null,
+          React.createElement(
+            Provider,
+            { store },
+            React.createElement(App)
+          )
+        )
+      );
+    });
+  </script>
+</body>
+</html>

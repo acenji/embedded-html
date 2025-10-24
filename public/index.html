@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ACENji Local Test</title>
+  
+  <link rel="stylesheet" href="https://acenji.com/build_web_app/static/css/main.b6215c01.css">
+</head>
+<body>
+  <!-- Only one root div -->
+  <div id="root"></div>
+
+  <script src="https://acenji.com/build_web_app/static/js/main.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      const appId = '780';
+      localStorage.setItem('web_app_id', appId);
+
+      const rootElement = document.getElementById('root');
+      const { React, ReactDOM, Provider, configureStore, default: App } = window.AppLibrary;
+
+      const store = configureStore();
+      const root = ReactDOM.createRoot(rootElement);
+      root.render(
+        React.createElement(
+          React.StrictMode,
+          null,
+          React.createElement(
+            Provider,
+            { store },
+            React.createElement(App)
+          )
+        )
+      );
+    });
+  </script>
+</body>
+</html>

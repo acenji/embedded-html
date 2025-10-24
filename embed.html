@@ -1,0 +1,29 @@
+<div id="acenji_root"></div>
+<link rel="stylesheet" href="https://acenji.com/build_web_app/static/css/main.b6215c01.css">
+<script src="https://acenji.com/build_web_app/static/js/main.js"></script>
+<script>
+    window.addEventListener('load', () => {
+
+        // Replace 'your_actual_app_id' with your real identifier.
+        const appId = 643;
+        localStorage.setItem('web_app_id', appId);
+
+        const rootElement = document.getElementById('acenji_root');
+
+        const {React, ReactDOM, Provider, configureStore, default: App} = window.AppLibrary;
+
+        const store = configureStore();
+        const root = ReactDOM.createRoot(rootElement);
+        root.render(
+            React.createElement(
+                React.StrictMode,
+                null,
+                React.createElement(
+                    Provider,
+                    {store: store},
+                    React.createElement(App)
+                )
+            )
+        );
+    });
+</script>
